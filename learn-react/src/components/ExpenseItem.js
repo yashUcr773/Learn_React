@@ -1,17 +1,15 @@
 import "./ExpenseItem.scss";
+import ExpenseDate from "./ExpensesDate";
 
-function ExpenseItems() {
-
-    let date = new Date(2020, 2, 26)
-    let desc = 'My Expenditure'
-    let price = 222.22
-
+function ExpenseItems(props) {
     return (
         <div className="expense-item">
-            <div>{date.toISOString()}</div>
+            <ExpenseDate date={props.expense.date} />
             <div className="expense-item__description">
-                <h2>{desc}</h2>
-                <div className="expense-item__price">{price}</div>
+                <h2>{props.expense.title}</h2>
+                <div className="expense-item__price">
+                    {props.expense.amount}
+                </div>
             </div>
         </div>
     );
