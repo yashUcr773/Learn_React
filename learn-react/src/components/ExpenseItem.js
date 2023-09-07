@@ -1,16 +1,29 @@
+// Module Imports
+import React, { useState } from "react";
+
+// Style Imports
 import "./ExpenseItem.scss";
+
+// Component Imports
 import CardWrapper from "./CardWrapper";
 import ExpenseDate from "./ExpensesDate";
 
 function ExpenseItems(props) {
+    const [expenseTitle, setExpenseTitle] = useState(props.expense.title);
+
+    const updateTitleHandler = () => {
+        setExpenseTitle("Updated!!");
+    };
+
     return (
         <CardWrapper className="expense-item">
             <ExpenseDate date={props.expense.date} />
             <div className="expense-item__description">
-                <h2>{props.expense.title}</h2>
+                <h2>{expenseTitle}</h2>
                 <div className="expense-item__price">
                     {props.expense.amount}
                 </div>
+                <button onClick={updateTitleHandler}>Update Title</button>
             </div>
         </CardWrapper>
     );
