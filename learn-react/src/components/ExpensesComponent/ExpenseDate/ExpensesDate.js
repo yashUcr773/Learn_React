@@ -1,5 +1,5 @@
 import "./ExpensesDate.scss";
-import CardWrapper from "./CardWrapper";
+import CardWrapper from "../../UI/CardWrapper/CardWrapper";
 
 function ExpenseDate(props) {
     const month = props.date.toLocaleString("en-US", { month: "long" });

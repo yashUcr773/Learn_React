@@ -5,8 +5,8 @@ import React, { useState } from "react";
 import "./ExpenseItem.scss";
 
 // Component Imports
-import CardWrapper from "./CardWrapper";
-import ExpenseDate from "./ExpensesDate";
+import CardWrapper from "../../UI/CardWrapper/CardWrapper";
+import ExpenseDate from "../ExpenseDate/ExpensesDate";
 
 function ExpenseItems(props) {
     const [expenseTitle, setExpenseTitle] = useState(props.expense.title);
