@@ -1,10 +1,14 @@
 import ExpenseForm from "../ExpenseForm/ExpenseForm";
 import "./NewExpense.scss";
 
-const NewExpense = () => {
+const NewExpense = (props) => {
+    const getNewExpense = (expenseData) => {
+        props.onNewExpense(expenseData);
+    };
+
     return (
         <div className="new-expense">
-            <ExpenseForm />
+            <ExpenseForm onNewExpense={getNewExpense} />
         </div>
     );
 };
