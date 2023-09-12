@@ -1,4 +1,4 @@
-import './CardWrapper.scss'
+import "./CardWrapper.scss";
 
 function CardWrapper(props) {
     let classes = "card-wrapper " + props.className;
