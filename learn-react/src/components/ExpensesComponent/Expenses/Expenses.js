@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import ExpenseItems from "../ExpenseItem/ExpenseItem";
 import CardWrapper from "../../UI/CardWrapper/CardWrapper";
 import ExpenseFilter from "../ExpenseFilter/ExpenseFilter";
+import ExpensesChart from "../../Chart/ExpensesChart";
 
 // style imports
 import "./Expenses.scss";
@@ -18,7 +19,7 @@ function Expenses(props) {
     };
 
     let filteredExpenses = props.expenses.filter((expense) => {
-        return expense.date.getFullYear() == +filteredYear;
+        return expense.date.getFullYear() === +filteredYear;
     });
 
     let filteredListJSX = (
@@ -33,6 +34,7 @@ function Expenses(props) {
     return (
         <div>
             <CardWrapper className="expenses">
+                <ExpensesChart expenses={filteredExpenses}></ExpensesChart>
                 <ExpenseFilter
                     filteredYear={filteredYear}
                     getExpenseFilterValue={getExpenseFilterValue}

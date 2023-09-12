@@ -33,6 +33,7 @@ function App() {
 
     const getNewExpense = (expenseData) => {
         setExpenses((prevExpenses) => {
+            expenseData.amount = "$" + expenseData.amount;
             expenseData.id = "e" + (prevExpenses.length + 1);
             return [expenseData, ...prevExpenses];
         });
