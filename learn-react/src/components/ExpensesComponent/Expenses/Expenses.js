@@ -21,6 +21,15 @@ function Expenses(props) {
         return expense.date.getFullYear() == +filteredYear;
     });
 
+    let filteredListJSX = (
+        <div className="expenses-list__fallback">No Records Found</div>
+    );
+    if (filteredExpenses.length) {
+        filteredListJSX = filteredExpenses.map((expense) => {
+            return <ExpenseItems expense={expense} key={expense.id} />;
+        });
+    }
+
     return (
         <div>
             <CardWrapper className="expenses">
@@ -28,9 +37,7 @@ function Expenses(props) {
                     filteredYear={filteredYear}
                     getExpenseFilterValue={getExpenseFilterValue}
                 />
-                {filteredExpenses.map((expense) => {
-                    return <ExpenseItems expense={expense} key={expense.id} />;
-                })}
+                {filteredListJSX}
             </CardWrapper>
         </div>
     );
