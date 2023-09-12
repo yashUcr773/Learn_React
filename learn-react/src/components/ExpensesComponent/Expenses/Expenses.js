@@ -17,6 +17,10 @@ function Expenses(props) {
         setFilteredYear(value);
     };
 
+    let filteredExpenses = props.expenses.filter((expense) => {
+        return expense.date.getFullYear() == +filteredYear;
+    });
+
     return (
         <div>
             <CardWrapper className="expenses">
@@ -24,7 +28,7 @@ function Expenses(props) {
                     filteredYear={filteredYear}
                     getExpenseFilterValue={getExpenseFilterValue}
                 />
-                {props.expenses.map((expense) => {
+                {filteredExpenses.map((expense) => {
                     return <ExpenseItems expense={expense} key={expense.id} />;
                 })}
             </CardWrapper>
