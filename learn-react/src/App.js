@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Expenses from "./components/ExpensesComponent/Expenses/Expenses";
 import NewExpenses from "./components/NewExpensesComponent/NewExpense/NewExpense";
 import FragmentsTest from "./components/FragmentsTest/FragmentsTest";
+import PortalTest from "./components/PortalTest/PortalTest";
 
 const DUMMY_EXPENSES = [
     {
@@ -45,6 +46,7 @@ function App() {
             <NewExpenses onNewExpense={getNewExpense} />
             <Expenses expenses={expenses} />
             <FragmentsTest></FragmentsTest>
+            <PortalTest></PortalTest>
         </div>
     );
 }
