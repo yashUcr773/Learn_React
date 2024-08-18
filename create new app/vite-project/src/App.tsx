@@ -1,35 +1,65 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import Header from "./components/Header/Header";
+import CoreConcept from "./components/CoreConcept";
+import TabButton from "./components/TabButton";
+import { CORE_CONCEPTS, EXAMPLES } from "./data";
 
 function App() {
-  const [count, setCount] = useState(0)
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+	// state management
+	const [selectedTopic, setSelectedTopic] = useState<"components" | "jsx" | "props" | "state">('components');
+
+	function handleSelect(selectedButton: "components" | "jsx" | "props" | "state") {
+		// selectedButton => 'components', 'jsx', 'props', 'state'
+		setSelectedTopic(selectedButton);
+		// console.log(selectedTopic);
+	}
+
+
+	// conditional rendering
+	let tabContent = <p>Please select a topic.</p>;
+	if (selectedTopic) {
+		tabContent = (
+			<div id="tab-content">
+				<h3>{EXAMPLES[selectedTopic].title}</h3>
+				<p>{EXAMPLES[selectedTopic].description}</p>
+				<pre>
+					<code>{EXAMPLES[selectedTopic].code}</code>
+				</pre>
+			</div>
+		);
+	}
+
+	return (
+		<div>
+			<Header />
+			<main>
+				<section id="core-concepts">
+					<h2>Core Concepts</h2>
+					<ul>
+						<CoreConcept
+							title={CORE_CONCEPTS[0].title}
+							description={CORE_CONCEPTS[0].description}
+							image={CORE_CONCEPTS[0].image}
+						/>
+						<CoreConcept {...CORE_CONCEPTS[1]} />
+						<CoreConcept {...CORE_CONCEPTS[2]} />
+						<CoreConcept {...CORE_CONCEPTS[3]} />
+					</ul>
+				</section>
+				<section id="examples">
+					<h2>Examples</h2>
+					<menu>
+						<TabButton onSelect={() => handleSelect("components")}>Components</TabButton>
+						<TabButton onSelect={() => handleSelect("jsx")}>JSX</TabButton>
+						<TabButton onSelect={() => handleSelect("props")}>Props</TabButton>
+						<TabButton onSelect={() => handleSelect("state")}>State</TabButton>
+					</menu>
+					{tabContent}
+				</section>
+			</main>
+		</div>
+	);
 }
 
-export default App
+export default App;
